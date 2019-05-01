@@ -6,9 +6,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* for footer but currently not working */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.featured-recipe .card .card-image img {
+  height: 400px;
 }
