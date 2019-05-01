@@ -26,19 +26,19 @@ const NewRecipe = () => {
         <div className="row difficulty" id="difficulty">
           <div className="col m4">
             <label htmlFor="easy">
-              <input className="with-gap" id="easy" type="radio" />
+              <input className="with-gap" value="easy" type="radio" />
               <span>Easy </span>
             </label>
           </div>
           <div className="col m2">
             <label htmlFor="intermediate">
-              <input className="with-gap" id="intermediate" type="radio" />
+              <input className="with-gap" value="intermediate" type="radio" />
               <span>Intermediate </span>
             </label>
           </div>
           <div className="col m4 offset-m1">
             <label htmlFor="hard">
-              <input className="with-gap" id="hard" type="radio" />
+              <input className="with-gap" value="hard" type="radio" />
               <span>Hard </span>
             </label>
           </div>
@@ -46,7 +46,7 @@ const NewRecipe = () => {
         <div className="input-field row">
           <div className="col s12 m5" >
             <select id="prepTime">
-              <option value="" disabled selected>Prep Time</option>
+              <option value="" disabled>Prep Time</option>
               <option value="10 mins">10 mins</option>
               <option value="30 mins">30 mins</option>
               <option value="45 mins">45 mins</option>
@@ -59,7 +59,7 @@ const NewRecipe = () => {
           </div>
           <div className="col s12 m5" >
             <select id="cookTime">
-              <option value="" disabled selected>Cook Time</option>
+              <option value="" disabled>Cook Time</option>
               <option value="10 mins">10 mins</option>
               <option value="30 mins">30 mins</option>
               <option value="45 mins">45 mins</option>

@@ -15,7 +15,7 @@ const SearchBar = () => {
         <div className="row difficulty">
           <div className="col m4">
             <label htmlFor="easy">
-              <input className="with-gap" id="easy" type="radio" checked />
+              <input className="with-gap" id="easy" type="radio" />
               <span>Easy </span>
             </label>
           </div>
