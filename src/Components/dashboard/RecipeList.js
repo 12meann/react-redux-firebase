@@ -1,48 +1,46 @@
-import React, { Component } from "react";
+import React from "react";
 
 
 
-class RecipeList extends Component {
+const RecipeList = ({ recipes }) => {
 
+  const recipeItems = recipes ? (
+    recipes.map(recipe => {
+      return (
+        <div className="card horizontal" key={recipe.id}>
+          <div className="card-image" >
+            <img src="http://lorempixel.com/300/300/food/8/" alt="food pic" />
+          </div>
+          <div className="card-stacked">
+            <div className="card-content">
+              <h3 className="flow-text">{recipe.recipeName}</h3>
+              <p>by: <span className="blue-text"> {recipe.username} </span></p>
 
-  render() {
-
-    const { recipes } = this.props
-    const recipeItems = recipes ? (
-      recipes.map(recipe => {
-        return (
-          <div className="card horizontal" key={recipe.id}>
-            <div className="card-image" >
-              <img src="http://lorempixel.com/400/200/food/8/" alt="food pic" />
-            </div>
-            <div className="card-stacked">
-              <div className="card-content">
-                <h2 className="flow-text">{recipe.recipeName}</h2>
-                <p className="truncate">{recipe.description}</p>
-              </div>
-              <div className="card-action">
-                <span>{recipe.difficulty}</span>
-                <span>{recipe.prepTime}</span>
-                <span>{recipe.cookTime}</span>
-              </div>
+              <br />
+              <p className="truncate">{recipe.description}</p>
+              <br />
+              <span>Difficulty Level: {recipe.difficulty}</span> <br />
+              <span>Prep Time: {recipe.prepTime}</span> <br />
+              <span>Cooking Time: {recipe.cookTime}</span>
             </div>
           </div>
-        )
-      })
-    ) : (
-        <div className="center flow-text">No recipes at the moment.</div>
+        </div>
       )
+    })
+  ) : (
+      <div className="center flow-text">No recipes at the moment.</div>
+    )
 
-    return (
+  return (
 
-      <div className="container recipe-list">
-        {recipeItems}
+    <div className="container recipe-list">
+      {recipeItems}
 
 
 
-      </div>
-    );
-  }
+    </div>
+  );
+
 }
 
 
