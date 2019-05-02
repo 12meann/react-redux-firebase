@@ -27,15 +27,15 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-
-
+  console.log(state)
   return {
     recipes: state.firestore.ordered.recipes
   }
 
 }
 
-export default compose(connect(mapStateToProps),
+export default compose(
+  connect(mapStateToProps),
   firestoreConnect([
     { collection: "recipes" }
   ])

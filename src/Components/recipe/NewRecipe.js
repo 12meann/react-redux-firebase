@@ -52,6 +52,7 @@ class NewRecipe extends Component {
             <div className="col s12 m4" >
               <label htmlFor="difficulty"> Level of Difficulty
               <select className="browser-default" id="difficulty" onChange={this.handleChange}>
+                  <option value="" disabled selected>Choose one</option>
                   <option value="easy">Easy</option>
                   <option value="intermediate">Intermediate</option>
                   <option value="hard">Hard</option>
@@ -61,6 +62,7 @@ class NewRecipe extends Component {
             <div className="col s12 m4" >
               <label htmlFor="prepTime">Prep Time</label>
               <select className="browser-default" id="prepTime" onChange={this.handleChange}>
+                <option value="" disabled selected>Choose one</option>
                 <option value="5 mins">5 mins</option>
                 <option value="10 mins">10 mins</option>
                 <option value="30 mins">30 mins</option>
@@ -75,6 +77,7 @@ class NewRecipe extends Component {
             <div className="col s12 m4" >
               <label htmlFor="cookTime">Cook Time</label>
               <select className="browser-default" id="cookTime" onChange={this.handleChange}>
+                <option value="" disabled selected>Choose one</option>
                 <option value="10 mins">10 mins</option>
                 <option value="30 mins">30 mins</option>
                 <option value="45 mins">45 mins</option>
