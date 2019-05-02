@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { createRecipe } from "../../store/actions/recipeActions"
 
 class NewRecipe extends Component {
 
@@ -21,7 +23,8 @@ class NewRecipe extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state)
+    this.props.createRecipe(this.state)
+    this.props.history.push("/")
 
   }
 
@@ -95,4 +98,10 @@ class NewRecipe extends Component {
   }
 };
 
-export default NewRecipe;
+const mapDispatchToProps = dispatch => {
+  return {
+    createRecipe: recipe => { dispatch(createRecipe(recipe)) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewRecipe);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
+
 
 
 class RecipeList extends Component {
@@ -45,11 +45,5 @@ class RecipeList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state.recipe)
-  return {
-    recipes: state.recipe
-  }
-}
 
-export default connect(mapStateToProps)(RecipeList);
+export default RecipeList
