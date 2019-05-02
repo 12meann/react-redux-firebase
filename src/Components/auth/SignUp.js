@@ -1,37 +1,59 @@
-import React from "react";
+import React, { Component } from "react";
 
-const SignUp = () => {
-  return (
-    <div className="container row center">
-      <form className="col s12 m6 offset-m3">
+class SignUp extends Component {
+  state = {
+    email: "",
+    password: "",
+    username: "",
+    firstName: "",
+    lastName: ""
+  }
 
-        <h1 className="header">Sign Up</h1>
-        <div className="input-field">
-          <label htmlFor="email" />
-          <input type="email" placeholder="Email" id="email" />
-        </div>
-        <div className="input-field">
-          <label htmlFor="password" />
-          <input type="password" placeholder="Password" id="password" />
-        </div>
-        <div className="input-field">
-          <label htmlFor="username" />
-          <input type="text" placeholder="username" id="username" />
-        </div>
-        <div className="input-field">
-          <label htmlFor="firstname" />
-          <input type="text" placeholder="firstname" id="firstName" />
-        </div>
-        <div className="input-field">
-          <label htmlFor="lastname" />
-          <input type="text" placeholder="lastname" id="lastName" />
-        </div>
-        <div>
-          <button type="submit" className="btn light-blue accent-4">LOGIN</button>
-        </div>
-      </form>
-    </div>
-  );
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state);
+
+  }
+
+  render() {
+    return (
+      <div className="container row center">
+        <form className="col s12 m6 offset-m3" onSubmit={this.handleSubmit}>
+
+          <h1 className="header">Sign Up</h1>
+          <div className="input-field">
+            <label htmlFor="email" />
+            <input type="email" placeholder="Email" id="email" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <label htmlFor="password" />
+            <input type="password" placeholder="Password" id="password" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <label htmlFor="username" />
+            <input type="text" placeholder="username" id="username" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <label htmlFor="firstname" />
+            <input type="text" placeholder="firstname" id="firstName" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <label htmlFor="lastname" />
+            <input type="text" placeholder="lastname" id="lastName" onChange={this.handleChange} />
+          </div>
+          <div>
+            <button type="submit" className="btn light-blue accent-4">LOGIN</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 };
 
 export default SignUp;
