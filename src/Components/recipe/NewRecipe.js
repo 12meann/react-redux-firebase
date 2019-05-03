@@ -48,7 +48,7 @@ class NewRecipe extends Component {
           <div className="row">
             <div className="col s12 m4" >
               <label htmlFor="difficulty"> Level of Difficulty
-              <select className="browser-default" defaultValue={'DEFAULT'} id="difficulty" onChange={this.handleChange}>
+              <select defaultValue={'DEFAULT'} id="difficulty" onChange={this.handleChange}>
                   <option value="DEFAULT" disabled>Choose one</option>
                   <option value="easy">Easy</option>
                   <option value="intermediate">Intermediate</option>

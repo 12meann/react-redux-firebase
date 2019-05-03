@@ -16,8 +16,5 @@ export const createRecipe = recipe => {
     }).catch(err => {
       dispatch({ type: "CREATE_RECIPE_ERROR", err })
     })
-
-
-
   }
 }
