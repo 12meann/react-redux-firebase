@@ -4,7 +4,7 @@ import "firebase/auth"
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyDyoloRv048igJp0PaeBNSesxJal5Osxx4",
+  apiKey: "process.env.REACT_APP_FIREBASE_API",
   authDomain: "recipe-makr.firebaseapp.com",
   databaseURL: "https://recipe-makr.firebaseio.com",
   projectId: "recipe-makr",
@@ -12,6 +12,7 @@ var config = {
   messagingSenderId: "777562019447"
 };
 firebase.initializeApp(config);
+
 
 
 export default firebase

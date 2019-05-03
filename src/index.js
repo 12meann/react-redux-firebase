@@ -10,15 +10,18 @@ import thunk from 'redux-thunk';
 import { getFirebase, reactReduxFirebase } from "react-redux-firebase"
 import { getFirestore, reduxFirestore } from "redux-firestore"
 import fbConfig from "./config/fbConfig"
+require('dotenv').config()
+
+
 
 const store = createStore(
-  rootReducer, 
-compose(
-  applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+  rootReducer,
+  compose(
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
     reactReduxFirebase(fbConfig),
-      reduxFirestore(fbConfig)
-    )); 
-      
+    reduxFirestore(fbConfig)
+  ));
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
