@@ -4,7 +4,7 @@ import "firebase/auth"
 
 // Initialize Firebase
 var config = {
-  apiKey: "process.env.REACT_APP_FIREBASE_API",
+  apiKey: "AIzaSyDyoloRv048igJp0PaeBNSesxJal5Osxx4",
   authDomain: "recipe-makr.firebaseapp.com",
   databaseURL: "https://recipe-makr.firebaseio.com",
   projectId: "recipe-makr",
