@@ -36,24 +36,24 @@ class SignUp extends Component {
 
           <h1 className="header">Sign Up</h1>
           <div className="input-field">
-            <label htmlFor="email" />
-            <input type="email" placeholder="Email" id="email" onChange={this.handleChange} />
+            <input type="email" id="email" onChange={this.handleChange} />
+            <label htmlFor="email">Email</label>
           </div>
           <div className="input-field">
-            <label htmlFor="password" />
-            <input type="password" placeholder="Password" id="password" onChange={this.handleChange} />
+            <input type="password" id="password" onChange={this.handleChange} />
+            <label htmlFor="password">Password</label>
           </div>
           <div className="input-field">
-            <label htmlFor="username" />
-            <input type="text" placeholder="username" id="username" onChange={this.handleChange} />
+            <input type="text" id="username" onChange={this.handleChange} />
+            <label htmlFor="username">Username</label>
           </div>
           <div className="input-field">
-            <label htmlFor="firstname" />
-            <input type="text" placeholder="firstname" id="firstName" onChange={this.handleChange} />
+            <input type="text" id="firstName" onChange={this.handleChange} />
+            <label htmlFor="firstName">First Name</label>
           </div>
           <div className="input-field">
-            <label htmlFor="lastname" />
-            <input type="text" placeholder="lastname" id="lastName" onChange={this.handleChange} />
+            <input type="text" id="lastName" onChange={this.handleChange} />
+            <label htmlFor="lastName">Last Name</label>
           </div>
           <div>
             <button type="submit" className="btn light-blue accent-4">LOGIN</button>

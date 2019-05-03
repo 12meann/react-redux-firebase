@@ -32,12 +32,12 @@ class Login extends Component {
         <form className="col s12 m6 offset-m3" onSubmit={this.handleSubmit}>
           <h1 className="header">Login</h1>
           <div className="input-field">
-            <input type="email" placeholder="Email" id="email" onChange={this.handleChange} />
-            <label htmlFor="email" />
+            <input type="email" id="email" onChange={this.handleChange} />
+            <label htmlFor="email">Email</label>
           </div>
           <div className="input-field">
-            <input type="password" placeholder="Password" id="password" onChange={this.handleChange} />
-            <label htmlFor="password" />
+            <input type="password" id="password" onChange={this.handleChange} />
+            <label htmlFor="password">Password</label>
           </div>
           <div>
             <button type="submit" className="btn light-blue accent-4">LOGIN</button>

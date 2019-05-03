@@ -33,22 +33,22 @@ class NewRecipe extends Component {
 
           <h1 className="header">Create New recipe</h1>
           <div className="input-field">
-            <label htmlFor="recipeName" />
-            <input type="text" onChange={this.handleChange} placeholder="Recipe Name" id="recipeName" />
+            <input type="text" onChange={this.handleChange} id="recipeName" />
+            <label htmlFor="recipeName">Recipe Name</label>
           </div>
           <div className="input-field">
-            <label htmlFor="description" />
-            <textarea className="materialize-textarea" onChange={this.handleChange} id="description" placeholder="Description"></textarea>
+            <textarea className="materialize-textarea" onChange={this.handleChange} id="description"></textarea>
+            <label htmlFor="description">Description</label>
           </div>
           <div className="input-field">
-            <label htmlFor="instructions" />
-            <textarea className="materialize-textarea" onChange={this.handleChange} id="instructions" placeholder="Instructions"></textarea>
+            <textarea className="materialize-textarea" onChange={this.handleChange} id="instructions"></textarea>
+            <label htmlFor="instructions">Instructions</label>
           </div>
           <br />
           <div className="row">
             <div className="col s12 m4" >
               <label htmlFor="difficulty"> Level of Difficulty
-              <select defaultValue={'DEFAULT'} id="difficulty" onChange={this.handleChange}>
+              <select className="browser-default" defaultValue={'DEFAULT'} id="difficulty" onChange={this.handleChange}>
                   <option value="DEFAULT" disabled>Choose one</option>
                   <option value="easy">Easy</option>
                   <option value="intermediate">Intermediate</option>
