@@ -5,13 +5,16 @@ import SearchBar from "./SearchBar";
 import { compose } from "redux";
 import { connect } from 'react-redux'
 import { firestoreConnect } from "react-redux-firebase"
-
+import { Redirect } from "react-router-dom"
 
 
 class Dashboard extends Component {
   render() {
-
-    const { recipes } = this.props
+    const { recipes, auth } = this.props
+    console.log(this.props);
+    if (!auth.uid) {
+      return <Redirect to="/login" />
+    }
     return (
       <div className="row">
         <div className="col s12 m7">
@@ -27,8 +30,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+
   return {
+    auth: state.firebase.auth,
     recipes: state.firestore.ordered.recipes
   }
 

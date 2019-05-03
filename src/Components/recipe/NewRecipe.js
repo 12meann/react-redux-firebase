@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { createRecipe } from "../../store/actions/recipeActions"
+import { Redirect } from "react-router-dom"
 
 class NewRecipe extends Component {
-
   state = {
     recipeName: "",
     description: "",
@@ -12,24 +12,21 @@ class NewRecipe extends Component {
     prepTime: "",
     cookTime: ""
   }
-
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value,
     })
   }
-
-
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.createRecipe(this.state)
     this.props.history.push("/")
-
   }
-
   render() {
-
+    const { auth } = this.props
+    if (!auth.uid) {
+      return <Redirect to="/" />
+    }
     return (
       <div className="container row center">
         <form className="col s12 m8 offset-m2" onSubmit={this.handleSubmit}>
@@ -101,10 +98,16 @@ class NewRecipe extends Component {
   }
 };
 
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     createRecipe: recipe => { dispatch(createRecipe(recipe)) }
   }
 }
 
-export default connect(null, mapDispatchToProps)(NewRecipe);
+export default connect(mapStateToProps, mapDispatchToProps)(NewRecipe);

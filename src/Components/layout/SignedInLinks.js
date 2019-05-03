@@ -11,7 +11,7 @@ const SignedInLinks = ({ signOut }) => {
       <ul className="right hide-on-med-and-small">
         <li><NavLink to="/recipe/new">New Recipe</NavLink></li>
         <li><NavLink to="/">View My Recipes</NavLink></li>
-        <li><a onClick={signOut}>LogOut</a></li>
+        <li><a href="/login" onClick={signOut}>LogOut</a></li>
         <li>
           <NavLink to="/">
             <button href="/" className="btn-floating btn">
@@ -26,6 +26,7 @@ const SignedInLinks = ({ signOut }) => {
     </div >
   )
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {

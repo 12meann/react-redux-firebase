@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { logIn } from "../../store/actions/authActions"
+import { Redirect } from "react-router-dom"
 
 
 class Login extends Component {
@@ -18,11 +19,14 @@ class Login extends Component {
   handleSubmit = e => {
     e.preventDefault()
     this.props.logIn(this.state)
+    this.props.history.push("/")
   }
 
   render() {
-    const { authError } = this.props
-
+    const { authError, auth } = this.props
+    if (auth.uid) {
+      return <Redirect to="/" />
+    }
     return (
       <div className="container row  center">
         <form className="col s12 m6 offset-m3" onSubmit={this.handleSubmit}>
@@ -50,7 +54,9 @@ class Login extends Component {
 const mapStateToProps = state => {
   console.log(state)
   return {
-    authError: state.auth.authError
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+
   }
 }
 
