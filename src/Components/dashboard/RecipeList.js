@@ -7,6 +7,7 @@ const RecipeList = ({ recipes }) => {
 
   const recipeItems = recipes ? (
     recipes.map(recipe => {
+
       return (
 
         <div className="card horizontal" key={recipe.id}>

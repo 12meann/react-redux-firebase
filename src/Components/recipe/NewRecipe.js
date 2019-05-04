@@ -99,12 +99,14 @@ class NewRecipe extends Component {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     auth: state.firebase.auth,
   }
 }
 
 const mapDispatchToProps = dispatch => {
+
   return {
     createRecipe: recipe => { dispatch(createRecipe(recipe)) }
   }

@@ -22,7 +22,7 @@ class Dashboard extends Component {
         </div>
         <div className="col s12 m3 offset-m1">
           <SearchBar />
-          <FeaturedRecipe />
+          <FeaturedRecipe recipes={recipes} />
         </div>
       </div>
     );
@@ -33,7 +33,8 @@ const mapStateToProps = state => {
 
   return {
     auth: state.firebase.auth,
-    recipes: state.firestore.ordered.recipes
+    recipes: state.firestore.ordered.recipes,
+
   }
 
 }

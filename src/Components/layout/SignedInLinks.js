@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { signOut } from "../../store/actions/authActions"
 
 
-const SignedInLinks = ({ signOut }) => {
+const SignedInLinks = ({ signOut, profile }) => {
 
   return (
     <div>
@@ -16,6 +16,7 @@ const SignedInLinks = ({ signOut }) => {
           <NavLink to="/">
             <button href="/" className="btn-floating btn">
               <img src="http://lorempixel.com/40/50/animals/5" alt="pic" />
+              {/* if no pic use initials using profile props */}
             </button> Username
           </NavLink>
         </li>
