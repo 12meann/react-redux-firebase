@@ -3,14 +3,14 @@ import M from 'materialize-css';
 import { NavLink } from "react-router-dom"
 import { connect } from 'react-redux'
 import { signOut } from "../../store/actions/authActions"
-import $ from 'jquery';
+
 
 
 
 class SignedInLinks extends Component {
 
   componentDidMount() {
-    M.Dropdown.init(this.dropdown);
+    M.Dropdown.init(this.dropdown, { constrainWidth: false });
 
 
   }
