@@ -12,7 +12,7 @@ const RecipeList = ({ recipes }) => {
 
         <div className="card horizontal" key={recipe.id}>
           <div className="card-image" >
-            <img src="http://lorempixel.com/300/300/food/8/" alt="food pic" />
+            <img src={recipe.recipeImg} alt="food pic" />
           </div>
           <div className="card-stacked">
             <div className="card-content">
