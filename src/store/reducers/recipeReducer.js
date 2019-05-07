@@ -6,7 +6,13 @@ const recipeReducer = (state = initState, action) => {
       console.log("Succesfully created the recipe");
       return state
     case "CREATE_RECIPE_ERROR":
-      console.log("Create recipe error");
+      console.log("Create recipe error", action.err);
+      return state
+    case "IMAGE ON FS":
+      console.log("image on fs");
+      return state
+    case "ERROR ON IMAGE FS":
+      console.log("error on image fs", action.err);
       return state
     default:
       return state

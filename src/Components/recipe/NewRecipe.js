@@ -100,13 +100,16 @@ class NewRecipe extends Component {
             </div>
           </div>
           <div className="file-field input-field">
+
             <div className="btn">
               <span>Upload Recipe Image</span>
               <input type="file" onChange={(e) => { this.displayRecipeImg(e) }} />
             </div>
+
             <div className="file-path-wrapper">
               <input className="file-path validate" type="text" />
             </div>
+            <span className="left helper-text red-text">Image file size should be 1 MB or below.</span>
           </div>
 
           <PreviewImg recipeImgUrl={this.state.recipeImgUrl} />

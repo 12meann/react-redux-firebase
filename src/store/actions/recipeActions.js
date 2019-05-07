@@ -23,13 +23,17 @@ export const createRecipe = recipe => {
           authorId: authorId,
           createdAt: new Date(),
           recipeImg: url
-        })
-      })
-        .then(() => {
+        }).then(() => {
           dispatch({ type: "CREATE_RECIPE" })
+        }).catch(err => {
+          dispatch({ type: "CREATE_RECIPE_ERROR", err })
         })
-    }).catch(err => {
-      dispatch({ type: "CREATE_RECIPE_ERROR", err })
+      }).then(() => {
+        dispatch({ type: "IMAGE ON FS" })
+      }).catch((err) => {
+        dispatch({ type: "ERROR ON IMAGE FS", err })
+      })
+
     })
   }
 }
