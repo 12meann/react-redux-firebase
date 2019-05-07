@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
+import moment from "moment"
 
 
 
@@ -19,8 +20,9 @@ const RecipeList = ({ recipes }) => {
               <Link to={"/recipe/" + recipe.id}>
                 <h3 className="flow-text">{recipe.recipeName}</h3>
               </Link>
-              <p>by: <span className="blue-text"> {recipe.username} </span></p>
-
+              by: <span className="blue-text"> {recipe.username} </span>
+              <br />
+              Created {moment(recipe.createdAt.toDate()).calendar()}
               <br />
               <p className="truncate">{recipe.description}</p>
               <br />

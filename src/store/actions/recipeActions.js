@@ -11,13 +11,10 @@ export const createRecipe = recipe => {
     const recipeImg = recipe.recipeImg
     const storageRef = storage.ref().child(`/recipeImg/${recipeImg.name}`)
 
-    storageRef.put(recipeImg).then((snapshot) => {
-      storageRef.getDownloadURL().then(function (url) {
+    storageRef.put(recipeImg).then(() => {
+      storageRef.getDownloadURL().then(url => {
 
-
-        console.log(snapshot);
         return firestore.collection("recipes").add({
-
           ...recipe,
           authorFirstName: profile.firstName,
           authorLastName: profile.lastName,
@@ -30,11 +27,9 @@ export const createRecipe = recipe => {
       })
         .then(() => {
           dispatch({ type: "CREATE_RECIPE" })
-        }).catch(err => {
-          dispatch({ type: "CREATE_RECIPE_ERROR", err })
         })
-
-
+    }).catch(err => {
+      dispatch({ type: "CREATE_RECIPE_ERROR", err })
     })
   }
 }

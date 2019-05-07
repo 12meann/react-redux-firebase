@@ -13,7 +13,7 @@ class NewRecipe extends Component {
     prepTime: "",
     cookTime: "",
     recipeImg: null,
-    recipeImgUrl: null
+    recipeImgUrl: "http://via.placeholder.com/640x360"
   }
   handleChange = e => {
     this.setState({
@@ -110,6 +110,7 @@ class NewRecipe extends Component {
           </div>
 
           <PreviewImg recipeImgUrl={this.state.recipeImgUrl} />
+
           <div>
             <button type="submit" className="btn light-blue accent-4">Submit Recipe</button>
           </div>
@@ -122,7 +123,7 @@ class NewRecipe extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    auth: state.firebase.auth,
+    auth: state.firebase.auth
   }
 }
 
