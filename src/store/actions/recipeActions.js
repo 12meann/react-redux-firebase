@@ -1,5 +1,5 @@
 import { storage } from "../../config/fbConfig"
-
+import { capitalize } from "../../ownFunction/otherFunc"
 
 
 export const createRecipe = recipe => {
@@ -10,15 +10,17 @@ export const createRecipe = recipe => {
     const authorId = getState().firebase.auth.uid
     const recipeImg = recipe.recipeImg
     const storageRef = storage.ref().child(`/recipeImg/${recipeImg.name}`)
-
+    console.log(profile)
     storageRef.put(recipeImg).then(() => {
       storageRef.getDownloadURL().then(url => {
 
+
+
         return firestore.collection("recipes").add({
           ...recipe,
-          authorFirstName: profile.firstName,
-          authorLastName: profile.lastName,
-          initials: profile.firstName[0] + profile.lastName[0],
+          authorFirstName: capitalize(profile.firstName),
+          authorLastName: capitalize(profile.lastName),
+          initials: capitalize(profile.firstName[0]) + capitalize(profile.lastName[0]),
           username: profile.username,
           authorId: authorId,
           createdAt: new Date(),

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createRecipe } from "../../store/actions/recipeActions"
 import { Redirect } from "react-router-dom"
 import PreviewImg from "./PreviewImg";
+import { capitalize } from "../../ownFunction/otherFunc"
 
 class NewRecipe extends Component {
   state = {
@@ -17,7 +18,7 @@ class NewRecipe extends Component {
   }
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value,
+      [e.target.id]: capitalize(e.target.value),
     })
   }
   handleSubmit = e => {

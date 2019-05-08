@@ -11,12 +11,11 @@ class SignedInLinks extends Component {
 
   componentDidMount() {
     M.Dropdown.init(this.dropdown, { constrainWidth: false });
-
-
   }
-  render() {
-    const { signOut } = this.props
 
+  render() {
+    const { signOut, profile } = this.props
+    console.log(profile);
     return (
       <div>
         <ul className="right hide-on-med-and-small">
@@ -28,7 +27,7 @@ class SignedInLinks extends Component {
               <button href="/" className="btn-floating btn">
                 <img src="http://lorempixel.com/40/50/animals/5" alt="pic" />
                 {/* if no pic use initials using profile props */}
-              </button> Username
+              </button>  {profile.username}
             </NavLink>
           </li>
           <li>

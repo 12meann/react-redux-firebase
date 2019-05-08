@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 
 const Navbar = ({ auth, profile }) => {
+  console.log(profile)
   return (
     <nav className="nav-wrapper blue-grey darken-4">
       <div className="container">

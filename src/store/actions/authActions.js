@@ -1,3 +1,5 @@
+import { capitalize } from "../../ownFunction/otherFunc"
+
 export const logIn = credentials => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
 
@@ -32,10 +34,10 @@ export const signUp = (newUser) => {
       newUser.email, newUser.password
     ).then((resp) => {
       return firestore.collection("users").doc(resp.user.uid).set({
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
+        firstName: capitalize(newUser.firstName),
+        lastName: capitalize(newUser.lastName),
         username: newUser.username,
-        initials: newUser.firstName[0] + newUser.lastName[0]
+        initials: capitalize(newUser.firstName[0]) + capitalize(newUser.lastName[0])
       })
     }).then(() => {
       dispatch({ type: "SIGN_UP_SUCCESS" })
