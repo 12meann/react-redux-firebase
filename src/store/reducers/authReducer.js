@@ -5,10 +5,10 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "LOGIN_ERROR":
-      console.log("login error");
+      console.log("login error", action.err);
       return {
         ...state,
-        authError: "LOGIN FAILED",
+        authError: "LOGIN FAILED " + action.err,
       }
 
     case "LOGIN_SUCCESS":
@@ -19,18 +19,18 @@ const authReducer = (state = initState, action) => {
       }
 
     case "SIGN_OUT_SUCCESS":
-      console.log("sign out success")
+      console.log("sign out success", action)
       return state
 
     case "SIGN_UP_SUCCESS":
-      console.log("sign UP success")
+      console.log("sign UP success", action)
       return {
         ...state,
         authError: null
       }
 
     case "SIGN_UP_ERROR":
-      console.log("sign up error")
+      console.log("sign up error", action.err)
       return {
         ...state,
         authError: "LOGIN FAILED",

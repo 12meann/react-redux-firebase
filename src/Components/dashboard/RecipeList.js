@@ -24,7 +24,7 @@ const RecipeList = ({ recipes }) => {
               <br />
               Created {moment(recipe.createdAt.toDate()).calendar()}
               <br />
-              <p className="truncate">{recipe.description}</p>
+              <p>{recipe.description.length > 50 ? (`${recipe.description.substr(0, 50)}...`) : (`${recipe.description.substr(0, 50)}`)}</p>
               <br />
               <span>Difficulty Level: {recipe.difficulty}</span> <br />
               <span>Prep Time: {recipe.prepTime}</span> <br />
