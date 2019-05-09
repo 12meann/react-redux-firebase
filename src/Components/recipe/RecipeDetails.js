@@ -6,8 +6,16 @@ import moment from "moment";
 import { Redirect } from "react-router-dom"
 
 
+
 class RecipeDetails extends Component {
+
+
   render() {
+
+    window.$(document).ready(function () {
+      window.$('.materialboxed').materialbox();
+    });
+
     const { recipe, auth } = this.props
     if (!auth.uid) {
       return <Redirect to="/login" />
@@ -17,7 +25,8 @@ class RecipeDetails extends Component {
         {recipe ? (
           <div className="card">
             <div className="card-image responsive-img">
-              <img className="materialboxed" src="http://lorempixel.com/400/400/food/1" alt="food pic" />
+              <img className="materialboxed"
+                src={recipe.recipeImg} alt="food pic" />
             </div>
             <div className="card-action">
               <h2 className="header">{recipe.recipeName}</h2>

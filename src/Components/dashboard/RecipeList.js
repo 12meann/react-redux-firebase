@@ -6,6 +6,9 @@ import moment from "moment"
 
 const RecipeList = ({ recipes }) => {
 
+  window.$(document).ready(function () {
+    window.$('.materialboxed').materialbox();
+  });
   const recipeItems = recipes ? (
     recipes.map(recipe => {
 
@@ -13,7 +16,7 @@ const RecipeList = ({ recipes }) => {
 
         <div className="card horizontal" key={recipe.id}>
           <div className="card-image" >
-            <img src={recipe.recipeImg} alt="food pic" />
+            <img src={recipe.recipeImg} className="responsive-img materialboxed" alt="food pic" />
           </div>
           <div className="card-stacked">
             <div className="card-content">
@@ -22,9 +25,9 @@ const RecipeList = ({ recipes }) => {
               </Link>
               by: <span className="blue-text"> {recipe.username} </span>
               <br />
-              Created {moment(recipe.createdAt.toDate()).calendar()}
+              <span className="time"> published {moment(recipe.createdAt.toDate()).calendar()} </span>
               <br />
-              <p>{recipe.description.length > 50 ? (`${recipe.description.substr(0, 50)}...`) : (`${recipe.description.substr(0, 50)}`)}</p>
+              <p className="desc">{recipe.description.length > 75 ? (`${recipe.description.substr(0, 75)}...`) : (`${recipe.description.substr(0, 50)}`)}</p>
               <br />
               <span>Difficulty Level: {recipe.difficulty}</span> <br />
               <span>Prep Time: {recipe.prepTime}</span> <br />

@@ -12,7 +12,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.nav-wrapper {
+  margin-bottom: 50px;
+}
 
 .featured-recipe .card .card-image img {
   height: 400px;
+}
+
+.recipe-list .card.horizontal {
+  max-height: 300px;
+}
+.recipe-list .card.horizontal img {
+  max-height: 300px;
+}
+.card.horizontal .card-stacked .flow-text {
+  margin: 0;
+}
+.card.horizontal .card-stacked .time {
+  font-size: 13px;
+}
+.card.horizontal .card-stacked .desc {
+  margin: 10px 0;
 }
