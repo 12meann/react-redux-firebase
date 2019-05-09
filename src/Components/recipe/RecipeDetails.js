@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from "react-redux-firebase"
 import { compose } from "redux"
 import moment from "moment";
-import { Redirect } from "react-router-dom"
+import { Redirect, Link } from "react-router-dom"
+import { deleteRecipe } from "../../store/actions/recipeActions"
 
 
 
 class RecipeDetails extends Component {
-
 
   render() {
 
@@ -16,7 +16,9 @@ class RecipeDetails extends Component {
       window.$('.materialboxed').materialbox();
     });
 
-    const { recipe, auth } = this.props
+    const { recipe, auth, deleteRecipe } = this.props
+    console.log(this.props);
+    let recipeId = this.props.match.params.recipeid
     if (!auth.uid) {
       return <Redirect to="/login" />
     }
@@ -44,7 +46,13 @@ class RecipeDetails extends Component {
               <br />
               <p>Instructions:</p>
               <p>{recipe.instructions}</p>
+              <div>
+                <Link to="/recipe/:recipeid/edit" className="btn yellow">Edit Recipe</Link>
+
+                <button onClick={() => deleteRecipe(recipeId, recipe.recipeImg)} className="btn red">Delete Recipe</button>
+              </div>
             </div>
+
           </div>
         ) : (
             <div className="container flow-text center">
@@ -69,9 +77,18 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+
+  return {
+    deleteRecipe: (recipeid, recipeImg) => { dispatch(deleteRecipe(recipeid, recipeImg)) }
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: "recipes" }
   ])
 )(RecipeDetails);
+
+

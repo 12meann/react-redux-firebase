@@ -1,96 +1,141 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { createRecipe } from "../../store/actions/recipeActions"
+import { Redirect } from "react-router-dom"
+import PreviewImg from "./PreviewImg";
+import { capitalize } from "../../ownFunction/otherFunc"
 
-const NewRecipe = () => {
-  return (
-    <div className="container row center">
-      <form className="col s12 m6 offset-m3">
+class NewRecipe extends Component {
+  state = {
+    recipeName: "",
+    description: "",
+    instructions: "",
+    difficulty: "",
+    prepTime: "",
+    cookTime: "",
+    recipeImg: null,
+    recipeImgUrl: "http://via.placeholder.com/640x360"
+  }
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: capitalize(e.target.value),
+    })
+  }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.createRecipe(this.state)
+    this.props.history.push("/")
+  }
+  displayRecipeImg = e => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        recipeImg: file,
+        recipeImgUrl: reader.result
+      })
+    }
+    reader.readAsDataURL(file)
+  }
+  render() {
+    const { auth } = this.props
+    if (!auth.uid) {
+      return <Redirect to="/" />
+    }
+    return (
+      <div className="container row center">
+        <form className="col s12 m8 offset-m2" onSubmit={this.handleSubmit}>
+          <h1 className="header">Create New recipe</h1>
+          <div className="input-field">
+            <input type="text" onChange={this.handleChange} id="recipeName" />
+            <label htmlFor="recipeName">Recipe Name</label>
+          </div>
+          <div className="input-field">
+            <textarea className="materialize-textarea" onChange={this.handleChange} id="description"></textarea>
+            <label htmlFor="description">Description</label>
+          </div>
+          <div className="input-field">
+            <textarea className="materialize-textarea" onChange={this.handleChange} id="instructions"></textarea>
+            <label htmlFor="instructions">Instructions</label>
+          </div>
+          <br />
+          <div className="row">
+            <div className="col s12 m4" >
+              <label htmlFor="difficulty"> Level of Difficulty
+              <select className="browser-default" defaultValue={'DEFAULT'} id="difficulty" onChange={this.handleChange}>
+                  <option value="DEFAULT" disabled>Choose one</option>
+                  <option value="easy">Easy</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </label>
+            </div>
+            <div className="col s12 m4" >
+              <label htmlFor="prepTime">Prep Time</label>
+              <select className="browser-default" defaultValue={'DEFAULT'} id="prepTime" onChange={this.handleChange}>
+                <option value="DEFAULT" disabled>Choose one</option>
+                <option value="5 mins">5 mins</option>
+                <option value="10 mins">10 mins</option>
+                <option value="30 mins">30 mins</option>
+                <option value="45 mins">45 mins</option>
+                <option value="1 hour">1 hour</option>
+                <option value="1.5 hour">1.5 hour</option>
+                <option value="2 hours">2 hours</option>
+                <option value="more than 2 hours">more than 2 hours</option>
+              </select>
+            </div>
+            <div className="col s12 m4" >
+              <label htmlFor="cookTime">Cook Time</label>
+              <select className="browser-default" defaultValue={'DEFAULT'} id="cookTime" onChange={this.handleChange}>
+                <option value="DEFAULT" disabled>Choose one</option>
+                <option value="10 mins">10 mins</option>
+                <option value="30 mins">30 mins</option>
+                <option value="45 mins">45 mins</option>
+                <option value="1 hour">1 hour</option>
+                <option value="1.5 hour">1.5 hour</option>
+                <option value="2 hours">2 hours</option>
+                <option value="3 hours">3 hours</option>
+                <option value="8 hours">8 hours</option>
+                <option value="more than 8 hours">more than 8 hours</option>
+              </select>
+            </div>
+          </div>
+          <div className="file-field input-field">
 
-        <h1 className="header">Edit recipe</h1>
-        <div className="input-field">
-          <label htmlFor="recipeName" />
-          <input type="text" placeholder="Recipe Name" id="recipeName" />
-        </div>
-        <div className="input-field">
-          <label htmlFor="description" />
-          <textarea className="materialize-textarea" id="description" placeholder="Description"></textarea>
-        </div>
-        <div className="input-field row">
-          <div className="col s12 m10">
-            <label htmlFor="instructions" />
-            <textarea className="materialize-textarea" id="instructions" placeholder="Instructions (click add button to add instructions)"></textarea>
-          </div>
-          <div className="col s12 m2">
-            <a href="/" className="btn btn-floating circle prefix"><i className="material-icons">add</i></a>
-          </div>
-        </div>
-        <div className="row difficulty" id="difficulty">
-          <div className="col m4">
-            <label htmlFor="easy">
-              <input class="with-gap" id="easy" type="radio" />
-              <span>Easy </span>
-            </label>
-          </div>
-          <div className="col m2">
-            <label htmlFor="intermediate">
-              <input class="with-gap" id="intermediate" type="radio" />
-              <span>Intermediate </span>
-            </label>
-          </div>
-          <div className="col m4 offset-m1">
-            <label htmlFor="hard">
-              <input class="with-gap" id="hard" type="radio" />
-              <span>Hard </span>
-            </label>
-          </div>
-        </div>
-        <div class="input-field row">
-          <div className="col s12 m5" >
-            <select id="prepTime">
-              <option value="" disabled selected>Prep Time</option>
-              <option value="10 mins">10 mins</option>
-              <option value="30 mins">30 mins</option>
-              <option value="45 mins">45 mins</option>
-              <option value="1 hour">1 hour</option>
-              <option value="1.5 hour">1.5 hour</option>
-              <option value="2 hours">2 hours</option>
-              <option value="more than 2 hours">more than 2 hours</option>
-            </select>
-            <label htmlFor="prepTime"></label>
-          </div>
-          <div className="col s12 m5" >
-            <select id="cookTime">
-              <option value="" disabled selected>Cook Time</option>
-              <option value="10 mins">10 mins</option>
-              <option value="30 mins">30 mins</option>
-              <option value="45 mins">45 mins</option>
-              <option value="1 hour">1 hour</option>
-              <option value="1.5 hour">1.5 hour</option>
-              <option value="2 hours">2 hours</option>
-              <option value="3 hours">3 hours</option>
-              <option value="8 hours">8 hours</option>
-              <option value="more than 8 hours">more than 8 hours</option>
-            </select>
-            <label htmlFor="cookTime"></label>
+            <div className="btn">
+              <span>Upload Recipe Image</span>
+              <input type="file" onChange={(e) => { this.displayRecipeImg(e) }} />
+            </div>
+
+            <div className="file-path-wrapper">
+              <input className="file-path validate" type="text" />
+            </div>
+            <span className="left helper-text red-text">Image file size should be 1 MB or below.</span>
           </div>
 
-        </div>
-        <div class="file-field input-field row">
+          <PreviewImg recipeImgUrl={this.state.recipeImgUrl} />
 
-          <div class="file-path-wrapper col s12 m8">
-            <input class="file-path validate" type="text" />
+          <div>
+            <button type="submit" className="btn light-blue accent-4">Submit Recipe</button>
           </div>
-          <div class="btn col s12 m4">
-            <span>Upload Image URL</span>
-            <input type="file" id="recipeImg" />
-          </div>
-        </div>
-        <div>
-          <button type="submit" className="btn light-blue accent-4">Submit Modified Recipe</button>
-
-        </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
+  }
 };
 
-export default NewRecipe;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+
+  return {
+    createRecipe: recipe => { dispatch(createRecipe(recipe)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewRecipe);

@@ -14,6 +14,14 @@ const recipeReducer = (state = initState, action) => {
     case "ERROR ON IMAGE FS":
       console.log("error on image fs", action.err);
       return state
+
+    case "DELETE RECIPE":
+      console.log("succesfully deleted recipe");
+      return {
+        ...state
+
+      }
+
     default:
       return state
   }

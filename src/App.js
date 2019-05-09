@@ -9,6 +9,7 @@ import Contact from "./Components/pages/Contact"
 import Navbar from "./Components/layout/Navbar"
 import NewRecipe from "./Components/recipe/NewRecipe"
 import RecipeDetails from "./Components/recipe/RecipeDetails"
+import EditRecipe from "./Components/recipe/EditRecipe"
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="/contact" component={Contact} />
             <Route path="/recipe/new" component={NewRecipe} />
             <Route path="/recipe/:recipeid" component={RecipeDetails} />
+            <Route path="/recipe/:recipeid/edit" component={EditRecipe} />
           </Switch>
 
         </div>

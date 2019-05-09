@@ -10,11 +10,9 @@ export const createRecipe = recipe => {
     const authorId = getState().firebase.auth.uid
     const recipeImg = recipe.recipeImg
     const storageRef = storage.ref().child(`/recipeImg/${recipeImg.name}`)
-    console.log(profile)
+
     storageRef.put(recipeImg).then(() => {
       storageRef.getDownloadURL().then(url => {
-
-
 
         return firestore.collection("recipes").add({
           ...recipe,
@@ -38,4 +36,22 @@ export const createRecipe = recipe => {
 
     })
   }
+}
+
+export const deleteRecipe = (recipeid, recipeImg) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore()
+
+    firestore.collection("recipes").doc(recipeid).delete()
+
+      .then(() => {
+        dispatch({ type: "DELETE RECIPE" })
+      })
+
+      .catch(err => {
+        dispatch({ type: "ERROR DELETING RECIPE", err })
+        console.error("Error removing document: ", err);
+      });
+  }
+
 }
