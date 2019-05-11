@@ -15,7 +15,7 @@ class SignedInLinks extends Component {
 
   render() {
     const { signOut, profile } = this.props
-    console.log(profile);
+
     return (
       <div>
         <ul className="right hide-on-med-and-small">

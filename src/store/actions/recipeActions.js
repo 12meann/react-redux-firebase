@@ -2,6 +2,7 @@ import { storage } from "../../config/fbConfig"
 import { capitalize } from "../../ownFunction/otherFunc"
 
 
+
 export const createRecipe = recipe => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
 
@@ -38,7 +39,7 @@ export const createRecipe = recipe => {
   }
 }
 
-export const deleteRecipe = (recipeid, recipeImg) => {
+export const deleteRecipe = (recipeid) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore()
 
@@ -54,4 +55,24 @@ export const deleteRecipe = (recipeid, recipeImg) => {
       });
   }
 
+}
+
+export const updateRecipe = (id, updatedRecipe) => {
+  return (dispatch, getState, { getFirestore, getFirebase }) => {
+
+    const firestore = getFirestore()
+
+    firestore.collection("recipes").doc(id).set({
+      ...updatedRecipe,
+      updatedAt: new Date()
+    }, { merge: true }
+
+    ).then((doc) => {
+
+      dispatch({ type: "UPDATE RECIPE" }, doc)
+
+    }).catch(err => {
+      dispatch({ type: "ERROR UPDATE", err })
+    })
+  }
 }

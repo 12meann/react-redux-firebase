@@ -8,6 +8,7 @@ import { deleteRecipe } from "../../store/actions/recipeActions"
 
 
 
+
 class RecipeDetails extends Component {
 
   render() {
@@ -17,7 +18,7 @@ class RecipeDetails extends Component {
     });
 
     const { recipe, auth, deleteRecipe } = this.props
-    console.log(this.props);
+
     let recipeId = this.props.match.params.recipeid
     if (!auth.uid) {
       return <Redirect to="/login" />
@@ -47,9 +48,9 @@ class RecipeDetails extends Component {
               <p>Instructions:</p>
               <p>{recipe.instructions}</p>
               <div>
-                <Link to="/recipe/:recipeid/edit" className="btn yellow">Edit Recipe</Link>
+                <Link to={"/recipe/" + recipeId + "/edit"} className="btn yellow">Edit Recipe</Link>
 
-                <button onClick={() => deleteRecipe(recipeId, recipe.recipeImg)} className="btn red">Delete Recipe</button>
+                <button onClick={() => deleteRecipe(recipeId)} className="btn red">Delete Recipe</button>
               </div>
             </div>
 
@@ -66,7 +67,7 @@ class RecipeDetails extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+
   let id = ownProps.match.params.recipeid
   const recipes = state.firestore.data.recipes
   const recipe = recipes ? recipes[id] : null
@@ -80,7 +81,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
 
   return {
-    deleteRecipe: (recipeid, recipeImg) => { dispatch(deleteRecipe(recipeid, recipeImg)) }
+    deleteRecipe: (recipeid) => { dispatch(deleteRecipe(recipeid)) },
+
   }
 }
 

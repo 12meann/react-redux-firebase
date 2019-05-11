@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 
-const SignedInLinks = () => {
+const SignedOutLinks = () => {
   return (
     <div>
       <ul className="right hide-on-med-and-small">
@@ -15,4 +15,4 @@ const SignedInLinks = () => {
   )
 }
 
-export default SignedInLinks
+export default SignedOutLinks
