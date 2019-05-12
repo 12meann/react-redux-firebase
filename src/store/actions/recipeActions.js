@@ -57,19 +57,18 @@ export const deleteRecipe = (recipeid) => {
 
 }
 
-export const updateRecipe = (id, updatedRecipe) => {
+export const updateRecipe = (recipeId, updatedRecipe) => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
 
     const firestore = getFirestore()
 
-    firestore.collection("recipes").doc(id).set({
+    firestore.collection("recipes").doc(recipeId).set({
       ...updatedRecipe,
       updatedAt: new Date()
     }, { merge: true }
 
-    ).then((doc) => {
-
-      dispatch({ type: "UPDATE RECIPE" }, doc)
+    ).then(() => {
+      dispatch({ type: "UPDATE RECIPE" })
 
     }).catch(err => {
       dispatch({ type: "ERROR UPDATE", err })

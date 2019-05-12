@@ -4,45 +4,41 @@ import { Redirect } from "react-router-dom"
 import { capitalize } from "../../ownFunction/otherFunc"
 import { updateRecipe } from "../../store/actions/recipeActions"
 
-class EditRecipe extends Component {
+class UpdateRecipe extends Component {
   state = {
-    recipeName: "",
-    description: "",
-    instructions: "",
-    difficulty: "",
-    prepTime: "",
-    cookTime: "",
-    recipeImg: null,
-    recipeImgUrl: "http://via.placeholder.com/640x360"
+    recipeName: this.props.recipe.recipeName,
+    description: this.props.recipe.description,
+    instructions: this.props.recipe.instructions,
+    difficulty: this.props.recipe.difficulty,
+    prepTime: this.props.recipe.prepTime,
+    cookTime: this.props.recipe.cookTime,
+    recipeImg: this.props.recipe.recipeImg ? (this.props.recipe.recipeImg) : null,
+    recipeImgUrl: this.props.recipe.recipeImg ? this.props.recipe.recipeImg : "http://via.placeholder.com/640x360"
   }
 
-  componentDidMount() {
-    const { recipe } = this.props
-    this.setState({
-      recipeName: recipe.recipeName,
-      description: recipe.description,
-      instructions: recipe.instructions,
-      difficulty: recipe.difficulty,
-      prepTime: recipe.prepTime,
-      cookTime: recipe.cookTime,
-      recipeImg: recipe.recipeImg,
-      recipeImgUrl: recipe.recipeImgUrl
-    })
-
-  }
-
-
+  // componentDidMount() {
+  //   const { recipe } = this.props
+  //   this.setState({
+  //     recipeName: recipe.recipeName,
+  //     description: recipe.description,
+  //     instructions: recipe.instructions,
+  //     difficulty: recipe.difficulty,
+  //     prepTime: recipe.prepTime,
+  //     cookTime: recipe.cookTime,
+  //     recipeImg: recipe.recipeImg ,
+  //     recipeImgUrl: recipe.recipeImgUrl
+  //   })
+  // }
   handleChange = e => {
     this.setState({
       [e.target.id]: capitalize(e.target.value)
     })
-
   }
   handleUpdate = e => {
     let recipeId = this.props.match.params.recipeid
     e.preventDefault();
     this.props.updateRecipe(recipeId, this.state)
-    this.props.history.push("/")
+    this.props.history.push("/recipe/" + recipeId)
   }
   displayRecipeImg = e => {
     let reader = new FileReader();
@@ -57,7 +53,7 @@ class EditRecipe extends Component {
   }
   render() {
     const { auth, recipe } = this.props
-
+    console.log(this.state, this.props)
     if (!auth.uid) {
       return <Redirect to="/" />
     }
@@ -78,21 +74,20 @@ class EditRecipe extends Component {
             <label className="active" htmlFor="instructions">Instructions</label>
           </div>
           <br />
-          {console.log(this.state.difficulty)}
+
           <div className="row">
             <div className="col s12 m4" >
-              <label htmlFor="difficulty"> Level of Difficulty </label>
-              <select className="browser-default" id="difficulty" onChange={this.handleChange} defaultValue={this.state.difficulty} >
+              <label htmlFor="difficulty">Level of Difficulty</label>
+              <select className="browser-default" id="difficulty" multiple={false} onChange={this.handleChange} defaultValue={this.state.difficulty}>
                 <option value="DEFAULT" disabled>Choose one</option>
                 <option value="easy">Easy</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="hard">Hard</option>
               </select>
-
             </div>
             <div className="col s12 m4" >
               <label htmlFor="prepTime">Prep Time</label>
-              <select className="browser-default" id="prepTime" onChange={this.handleChange} value={this.state.prepTime}>
+              <select className="browser-default" id="prepTime" onChange={this.handleChange} defaultValue={this.state.prepTime}>
                 <option value="DEFAULT" disabled>Choose one</option>
                 <option value="5 mins">5 mins</option>
                 <option value="10 mins">10 mins</option>
@@ -106,7 +101,7 @@ class EditRecipe extends Component {
             </div>
             <div className="col s12 m4" >
               <label htmlFor="cookTime">Cook Time</label>
-              <select className="browser-default" id="cookTime" onChange={this.handleChange} value={this.state.cookTime}>
+              <select className="browser-default" id="cookTime" onChange={this.handleChange} defaultValue={this.state.cookTime}>
                 <option value="DEFAULT" disabled>Choose one</option>
                 <option value="10 mins">10 mins</option>
                 <option value="30 mins">30 mins</option>
@@ -151,20 +146,16 @@ const mapStateToProps = (state, ownProps) => {
   const recipes = state.firestore.data.recipes
   const recipe = recipes ? recipes[id] : null
 
-
   return {
     recipe: recipe,
     auth: state.firebase.auth
-
   }
 }
 
 const mapDispatchToProps = dispatch => {
-
   return {
-
     updateRecipe: (recipeId, updatedRecipe) => { dispatch(updateRecipe(recipeId, updatedRecipe)) }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditRecipe);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateRecipe);

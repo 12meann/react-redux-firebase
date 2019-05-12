@@ -25,7 +25,7 @@ const RecipeList = ({ recipes }) => {
               </Link>
               by: <span className="blue-text"> {recipe.username} </span>
               <br />
-              <span className="time">updated {recipe.updatedAt ? moment(recipe.updatedAt.toDate()).calendar() : moment(recipe.createdAt.toDate()).calendar()}</span>
+              <span className="time">published {recipe.updatedAt ? moment(recipe.updatedAt.toDate()).calendar() : moment(recipe.createdAt.toDate()).calendar()}</span>
               <br />
               <p className="desc">{recipe.description.length > 75 ? (`${recipe.description.substr(0, 75)}...`) : (`${recipe.description.substr(0, 50)}`)}</p>
               <br />

@@ -36,6 +36,8 @@ class RecipeDetails extends Component {
               <p>Created By:
               <span className="red-text"> {recipe.username} </span>
                 <span>{moment(recipe.createdAt.toDate()).calendar()}</span>
+                <br />
+                <span>Updated {moment(recipe.updatedAt.toDate()).calendar()}</span>
               </p>
               <p>Difficulty Level: <span>{recipe.difficulty}</span></p>
               <p>Preparation Time: <span>{recipe.prepTime}</span></p>
@@ -47,11 +49,14 @@ class RecipeDetails extends Component {
               <br />
               <p>Instructions:</p>
               <p>{recipe.instructions}</p>
-              <div>
-                <Link to={"/recipe/" + recipeId + "/edit"} className="btn yellow">Edit Recipe</Link>
+              {auth.uid === recipe.authorId ? (
+                <div>
+                  <Link to={"/recipe/" + recipeId + "/edit"} className="btn yellow">Edit Recipe</Link>
 
-                <button onClick={() => deleteRecipe(recipeId)} className="btn red">Delete Recipe</button>
-              </div>
+                  <button onClick={() => deleteRecipe(recipeId)} className="btn red">Delete Recipe</button>
+                </div>
+              ) : (null)}
+
             </div>
 
           </div>
