@@ -35,9 +35,9 @@ class RecipeDetails extends Component {
               <h2 className="header">{recipe.recipeName}</h2>
               <p>Created By:
               <span className="red-text"> {recipe.username} </span>
-                <span>{moment(recipe.createdAt.toDate()).calendar()}</span>
+                <span className="time">{recipe.createdAt ? moment(recipe.createdAt.toDate()).calendar() : null}</span>
                 <br />
-                <span>Updated {moment(recipe.updatedAt.toDate()).calendar()}</span>
+                {recipe.updatedAt ? <span className="time">Updated {moment(recipe.updatedAt.toDate()).calendar()} </span> : null}
               </p>
               <p>Difficulty Level: <span>{recipe.difficulty}</span></p>
               <p>Preparation Time: <span>{recipe.prepTime}</span></p>
