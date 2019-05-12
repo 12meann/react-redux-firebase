@@ -10,7 +10,7 @@ export const createRecipe = recipe => {
     const profile = getState().firebase.profile
     const authorId = getState().firebase.auth.uid
     const recipeImg = recipe.recipeImg
-    const storageRef = storage.ref().child(`/recipeImg/${recipeImg.name}`)
+    const storageRef = storage.ref().child(`/recipeImg/${new Date().getTime() + recipeImg.name}`)
 
     storageRef.put(recipeImg).then(() => {
       storageRef.getDownloadURL().then(url => {
