@@ -48,7 +48,7 @@ class RecipeDetails extends Component {
               <br />
               <br />
               <p>Instructions:</p>
-              <p>{recipe.instructions}</p>
+              {/* <p>{recipe.instructions}</p> */}
               {auth.uid === recipe.authorId ? (
                 <div>
                   <Link to={"/recipe/" + recipeId + "/edit"} className="btn yellow">Edit Recipe</Link>

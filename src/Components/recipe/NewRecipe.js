@@ -5,11 +5,13 @@ import { Redirect } from "react-router-dom"
 import PreviewImg from "./PreviewImg";
 import { capitalize } from "../../ownFunction/otherFunc"
 
+
 class NewRecipe extends Component {
   state = {
     recipeName: "",
     description: "",
-    instructions: "",
+    ingredients: [{}],
+    instructions: [{}],
     difficulty: "",
     prepTime: "",
     cookTime: "",
@@ -25,6 +27,7 @@ class NewRecipe extends Component {
     e.preventDefault();
     this.props.createRecipe(this.state)
     this.props.history.push("/")
+    console.log(this.state)
   }
   displayRecipeImg = e => {
     let reader = new FileReader();
@@ -37,8 +40,32 @@ class NewRecipe extends Component {
     }
     reader.readAsDataURL(file)
   }
+
+  addIngredient = (e) => {
+    this.setState((prevState) => ({
+      ingredients: [...prevState.ingredients, {}]
+    }));
+    console.log(this.state.ingredients)
+  }
+
+  addInstruction = (e) => {
+    this.setState((prevState) => ({
+      instructions: [...prevState.instructions, {}]
+    }));
+    console.log(this.state.instructions)
+  }
+
+  handleMultiInput = e => {
+    let ingredients = [...this.state.ingredients]
+    let instructions = [...this.state.instructions]
+    ingredients[e.target.dataset.id] = e.target.value
+    instructions[e.target.dataset.id] = e.target.value
+    this.setState({ ingredients, instructions })
+  }
+
   render() {
     const { auth } = this.props
+    let { ingredients, instructions } = this.state
     if (!auth.uid) {
       return <Redirect to="/" />
     }
@@ -54,10 +81,46 @@ class NewRecipe extends Component {
             <textarea className="materialize-textarea" onChange={this.handleChange} id="description"></textarea>
             <label htmlFor="description">Description</label>
           </div>
-          <div className="input-field">
-            <textarea className="materialize-textarea" onChange={this.handleChange} id="instructions"></textarea>
-            <label htmlFor="instructions">Instructions</label>
-          </div>
+          {
+            ingredients.map((val, idx) => {
+              let ingredientId = `ing-${idx}`
+              return (
+                <div key={idx}>
+                  <label htmlFor={ingredientId}>{`Ingredient #${idx + 1}`}</label>
+                  <input
+                    type="text"
+                    data-id={idx}
+                    id={ingredientId}
+                    className="ingredient"
+                    onChange={this.handleMultiInput}
+                  />
+
+                </div>
+              )
+            })
+          }
+          <a onClick={this.addIngredient}>Add new Ingredient</a>
+
+
+          {
+            instructions.map((val, idx) => {
+              let instructionId = `instruct-${idx}`
+              return (
+                <div key={idx}>
+                  <label htmlFor={instructionId}>{`Instruction #${idx + 1}`}</label>
+                  <textarea
+                    type="text"
+                    data-id={idx}
+                    id={instructionId}
+                    className="instructions materialize-textarea"
+                    onChange={this.handleMultiInput}
+                  ></textarea>
+
+                </div>
+              )
+            })
+          }
+          <a onClick={this.addInstruction}>Add new Instruction</a>
           <br />
           <div className="row">
             <div className="col s12 m4" >
