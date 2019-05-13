@@ -12,6 +12,7 @@ export const createRecipe = recipe => {
     const recipeImg = recipe.recipeImg
     const storageRef = storage.ref().child(`/recipeImg/${new Date().getTime() + recipeImg.name}`)
 
+
     storageRef.put(recipeImg).then(() => {
       storageRef.getDownloadURL().then(url => {
 
