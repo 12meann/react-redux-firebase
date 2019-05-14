@@ -6,6 +6,7 @@ import { compose } from "redux";
 import { connect } from 'react-redux'
 import { firestoreConnect } from "react-redux-firebase"
 import { Redirect } from "react-router-dom"
+import Footer from "./Footer"
 
 
 class Dashboard extends Component {
@@ -16,15 +17,21 @@ class Dashboard extends Component {
       return <Redirect to="/login" />
     }
     return (
-      <div className="row">
-        <div className="col s12 m7">
-          <RecipeList recipes={recipes} />
-        </div>
-        <div className="col s12 m3 offset-m1">
-          <SearchBar />
-          <FeaturedRecipe recipes={recipes} />
-        </div>
+
+      <div >
+        <main className="row">
+          <div className="col s12 m7">
+            <RecipeList recipes={recipes} />
+          </div>
+          <div className="col s12 m3 offset-m1">
+            <SearchBar />
+            <FeaturedRecipe recipes={recipes} />
+          </div>
+        </main>
+        <Footer />
       </div>
+
+
     );
   }
 }
