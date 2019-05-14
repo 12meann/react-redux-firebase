@@ -7,11 +7,36 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+nav .container ul li .link-button,
+nav .container .link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+  text-decoration: none;
+}
+
 .nav-wrapper {
   margin-bottom: 50px;
 }

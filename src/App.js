@@ -5,7 +5,7 @@ import Login from "./Components/auth/Login"
 import SignUp from "./Components/auth/SignUp"
 import About from "./Components/pages/About"
 import Contact from "./Components/pages/Contact"
-
+import Footer from "./Components/dashboard/Footer"
 import Navbar from "./Components/layout/Navbar"
 import NewRecipe from "./Components/recipe/NewRecipe"
 import RecipeDetails from "./Components/recipe/RecipeDetails"
@@ -28,7 +28,7 @@ class App extends Component {
             <Route exact path="/recipe/:recipeid" component={RecipeDetails} />
 
           </Switch>
-
+          <Footer />
         </div>
       </Router>
     );

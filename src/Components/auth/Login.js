@@ -4,6 +4,7 @@ import { logIn } from "../../store/actions/authActions"
 import { Redirect } from "react-router-dom"
 
 
+
 class Login extends Component {
   state = {
     email: "",
@@ -28,8 +29,8 @@ class Login extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div className="container row  center">
-        <form className="col s12 m6 offset-m3" onSubmit={this.handleSubmit}>
+      <div className="row">
+        <form className="container center col s12 m6 offset-m3" onSubmit={this.handleSubmit}>
           <h1 className="header">Login</h1>
           <div className="input-field">
             <input type="email" id="email" onChange={this.handleChange} />
@@ -46,6 +47,7 @@ class Login extends Component {
             {authError ? <p className="flow-text">{authError}</p> : null}
           </div>
         </form>
+
       </div>
     );
   }
