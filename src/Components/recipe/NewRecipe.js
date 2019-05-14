@@ -59,7 +59,7 @@ class NewRecipe extends Component {
   handleMultiInput = e => {
     let ingredients = [...this.state.ingredients]
 
-    ingredients[e.target.dataset.id] = e.target.value
+    ingredients[e.target.dataset.id] = capitalize(e.target.value)
 
     this.setState({ ingredients })
   }
@@ -67,7 +67,7 @@ class NewRecipe extends Component {
 
     let instructions = [...this.state.instructions]
 
-    instructions[e.target.dataset.id] = e.target.value
+    instructions[e.target.dataset.id] = capitalize(e.target.value)
     this.setState({ instructions })
   }
 

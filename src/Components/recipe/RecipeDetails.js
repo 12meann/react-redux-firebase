@@ -9,6 +9,7 @@ import { deleteRecipe } from "../../store/actions/recipeActions"
 
 
 
+
 class RecipeDetails extends Component {
 
   render() {
@@ -47,8 +48,25 @@ class RecipeDetails extends Component {
               <span>Description: </span> {recipe.description}
               <br />
               <br />
+              <p>Ingredients:</p>
+              <ul className="browser-default">
+                {
+                  recipe.ingredients.map(ingredient => {
+                    return (
+                      <li>{ingredient}</li>
+                    )
+                  })
+                }
+              </ul>
               <p>Instructions:</p>
-              {/* <p>{recipe.instructions}</p> */}
+              <ol>
+                {recipe.instructions.map(instruction => {
+                  return (
+                    <li>{instruction}</li>
+                  )
+
+                })}
+              </ol>
               {auth.uid === recipe.authorId ? (
                 <div>
                   <Link to={"/recipe/" + recipeId + "/edit"} className="btn yellow">Edit Recipe</Link>
