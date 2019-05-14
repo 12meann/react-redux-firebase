@@ -33,7 +33,7 @@ class SignedInLinks extends Component {
 
             {/* Dropdown Structure */}
             <ul id='dropdown1' className='dropdown-content'>
-              <li><NavLink to="/">My Recipes</NavLink></li>
+              <li><NavLink to="/recipe/myrecipes">My Recipes</NavLink></li>
               <li><a href="#!">Pinned Recipes</a></li>
               <li className="divider" tabIndex="-1"></li>
               <li><a href="#!">My profile</a></li>

@@ -10,6 +10,7 @@ import Navbar from "./Components/layout/Navbar"
 import NewRecipe from "./Components/recipe/NewRecipe"
 import RecipeDetails from "./Components/recipe/RecipeDetails"
 import UpdateRecipe from "./Components/recipe/UpdateRecipe"
+import MyRecipes from "./Components/recipe/MyRecipes";
 
 class App extends Component {
   render() {
@@ -24,8 +25,10 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             <Route path="/recipe/new" component={NewRecipe} />
+            <Route exact path="/recipe/myrecipes" component={MyRecipes} />
             <Route exact path="/recipe/:recipeid/edit" component={UpdateRecipe} />
             <Route exact path="/recipe/:recipeid" component={RecipeDetails} />
+
 
           </Switch>
           <Footer />

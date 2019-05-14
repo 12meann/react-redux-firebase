@@ -94,7 +94,6 @@ const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.recipeid
   const recipes = state.firestore.data.recipes
   const recipe = recipes ? recipes[id] : null
-
   return {
     recipe: recipe,
     auth: state.firebase.auth
