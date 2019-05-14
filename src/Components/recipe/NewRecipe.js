@@ -12,9 +12,9 @@ class NewRecipe extends Component {
     description: "",
     ingredients: [{}],
     instructions: [{}],
-    difficulty: "",
-    prepTime: "",
-    cookTime: "",
+    difficulty: "Easy",
+    prepTime: "10 mins",
+    cookTime: "30 mins",
     recipeImg: null,
     recipeImgUrl: "http://via.placeholder.com/640x360"
   }
@@ -91,6 +91,11 @@ class NewRecipe extends Component {
     if (!auth.uid) {
       return <Redirect to="/" />
     }
+
+    window.$(document).ready(function () {
+      window.$('select').formSelect();
+    });
+
     return (
       <div className="row">
         <form onSubmit={this.handleSubmit}>
@@ -107,44 +112,43 @@ class NewRecipe extends Component {
 
             <br />
             <div className="row">
-              <div className="col s12 m4" >
-                <label htmlFor="difficulty"> Level of Difficulty
-              <select className="browser-default" defaultValue={'DEFAULT'} id="difficulty" onChange={this.handleChange}>
-                    <option value="DEFAULT" disabled>Choose one</option>
-                    <option value="easy">Easy</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="hard">Hard</option>
-                  </select>
-                </label>
+              <div className="input-field col s12 m4" >
+                <select value={this.state.difficulty} id="difficulty" onChange={this.handleChange}>
+                  <option>Easy</option>
+                  <option>Intermediate</option>
+                  <option>Hard</option>
+                </select>
+                <label htmlFor="difficulty"> Level of Difficulty </label>
               </div>
-              <div className="col s12 m4" >
+
+              <div className="input-field col s12 m4" >
+                <select value={this.state.prepTime} id="prepTime" onChange={this.handleChange}>
+                  <option>5 mins</option>
+                  <option>10 mins</option>
+                  <option>30 mins</option>
+                  <option>45 mins</option>
+                  <option>1 hour</option>
+                  <option>1.5 hour</option>
+                  <option>2 hours</option>
+                  <option>more than 2 hours</option>
+                </select>
                 <label htmlFor="prepTime">Prep Time</label>
-                <select className="browser-default" defaultValue={'DEFAULT'} id="prepTime" onChange={this.handleChange}>
-                  <option value="DEFAULT" disabled>Choose one</option>
-                  <option value="5 mins">5 mins</option>
-                  <option value="10 mins">10 mins</option>
-                  <option value="30 mins">30 mins</option>
-                  <option value="45 mins">45 mins</option>
-                  <option value="1 hour">1 hour</option>
-                  <option value="1.5 hour">1.5 hour</option>
-                  <option value="2 hours">2 hours</option>
-                  <option value="more than 2 hours">more than 2 hours</option>
-                </select>
               </div>
-              <div className="col s12 m4" >
-                <label htmlFor="cookTime">Cook Time</label>
-                <select className="browser-default" defaultValue={'DEFAULT'} id="cookTime" onChange={this.handleChange}>
-                  <option value="DEFAULT" disabled>Choose one</option>
-                  <option value="10 mins">10 mins</option>
-                  <option value="30 mins">30 mins</option>
-                  <option value="45 mins">45 mins</option>
-                  <option value="1 hour">1 hour</option>
-                  <option value="1.5 hour">1.5 hour</option>
-                  <option value="2 hours">2 hours</option>
-                  <option value="3 hours">3 hours</option>
-                  <option value="8 hours">8 hours</option>
-                  <option value="more than 8 hours">more than 8 hours</option>
+
+              <div className="input-field col s12 m4" >
+                <select value={this.state.cookTime} id="cookTime" onChange={this.handleChange}>
+                  <option>No cooking needed</option>
+                  <option>10 mins</option>
+                  <option>30 mins</option>
+                  <option>45 mins</option>
+                  <option>1 hour</option>
+                  <option>1.5 hour</option>
+                  <option>2 hours</option>
+                  <option>3 hours</option>
+                  <option>8 hours</option>
+                  <option>more than 8 hours</option>
                 </select>
+                <label htmlFor="cookTime">Cook Time</label>
               </div>
             </div>
             <div className="file-field input-field">
@@ -165,6 +169,7 @@ class NewRecipe extends Component {
             <PreviewImg recipeImgUrl={this.state.recipeImgUrl} />
           </div>
           <div className="col s12 m5 offset-m1">
+            <h5>Ingredients:</h5>
             {
               ingredients.map((val, idx) => {
                 let ingredientId = `ing-${idx}`
@@ -190,7 +195,7 @@ class NewRecipe extends Component {
               })
             }
 
-            <h5>Instructions</h5>
+            <h5>Instructions:</h5>
 
             {
               instructions.map((val, idx) => {
