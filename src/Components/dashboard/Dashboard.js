@@ -10,6 +10,23 @@ import { Redirect } from "react-router-dom"
 
 
 class Dashboard extends Component {
+  state = {
+    filteredRecipes: "",
+    filteredIngredients: ""
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      filteredRecipes: e.target.value
+    })
+    console.log(this.state)
+  }
+
+  handleChange2 = (e) => {
+    this.setState({
+      filteredIngredients: e.target.value
+    })
+  }
   render() {
     const { recipes, auth } = this.props
 
@@ -17,33 +34,26 @@ class Dashboard extends Component {
       return <Redirect to="/login" />
     }
     return (
-
-      <div >
-        <main className="row">
-          <div className="col s12 m7">
-            <RecipeList recipes={recipes} />
-          </div>
-          <div className="col s12 m3 offset-m1">
-            <SearchBar />
-            <FeaturedRecipe recipes={recipes} />
-          </div>
-        </main>
-
+      <div className="row">
+        <div className="col s12 m7">
+          <RecipeList recipes={recipes} filteredRecipes={this.state.filteredRecipes} />
+        </div>
+        <div className="col s12 m3 offset-m1">
+          <SearchBar handleChange={this.handleChange}
+            filteredIngredients={this.state.filteredIngredients}
+            filteredRecipes={this.state.filteredRecipes} />
+          <FeaturedRecipe recipes={recipes} />
+        </div>
       </div>
-
-
     );
   }
 }
 
 const mapStateToProps = state => {
-
   return {
     auth: state.firebase.auth,
-    recipes: state.firestore.ordered.recipes,
-
+    recipes: state.firestore.ordered.recipes
   }
-
 }
 
 export default compose(

@@ -1,11 +1,13 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ recipes, handleChange, filteredRecipes, filteredIngredients }) => {
+
+
   return (
     <div className="search-bar row">
       <form className="col m12">
         <div className="input-field">
-          <input type="text" id="search-recipe" placeholder="Search Recipe" />
+          <input type="text" id={filteredRecipes} placeholder="Search Recipe" onChange={handleChange} />
           <label htmlFor="search-recipe" />
           {/* eslint-disable-next-line */}
           <a href="#">
@@ -35,8 +37,9 @@ const SearchBar = () => {
         <div className="input-field">
           <input
             type="text"
-            id="search-ingredients"
+            id={filteredIngredients}
             placeholder="Search Recipe by Ingredients"
+            onChange={handleChange}
           />
           <label htmlFor="search-ingredients" />
           {/* eslint-disable-next-line */}
