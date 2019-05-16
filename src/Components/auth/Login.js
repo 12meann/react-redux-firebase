@@ -47,7 +47,6 @@ class Login extends Component {
             {authError ? <p className="flow-text">{authError}</p> : null}
           </div>
         </form>
-
       </div>
     );
   }
@@ -58,7 +57,6 @@ const mapStateToProps = state => {
   return {
     authError: state.auth.authError,
     auth: state.firebase.auth
-
   }
 }
 
