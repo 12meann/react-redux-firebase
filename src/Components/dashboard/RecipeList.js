@@ -2,21 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom"
 import moment from "moment"
 
-
-
 class RecipeList extends Component {
   render() {
     window.$(document).ready(function () {
       window.$('.materialboxed').materialbox();
     });
 
-    const { recipes, filteredRecipes, filteredIngredients } = this.props
-
+    const { recipes, filteredRecipes } = this.props
     const recipeItems = recipes ? (
       recipes
         .filter(recipe => {
-
-          return recipe.recipeName.toLowerCase().indexOf(filteredRecipes.toLowerCase()) !== -1
+          console.log(recipe.recipeName);
+          return recipe.recipeName.toLowerCase().includes(filteredRecipes.toLowerCase())
         })
         .map(recipe => {
           return (
@@ -46,14 +43,11 @@ class RecipeList extends Component {
     ) : (
         <div className="center flow-text">No recipes at the moment.</div>
       )
-
     return (
-
       <div className="container recipe-list">
         {recipeItems}
       </div>
     );
-
   }
 }
 

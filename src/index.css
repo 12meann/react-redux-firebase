@@ -22,7 +22,8 @@ code {
     monospace;
 }
 nav .container ul li .link-button,
-nav .container .link-button {
+nav .container .link-button,
+.search-bar form div .link-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -31,10 +32,16 @@ nav .container .link-button {
   margin: 0;
   padding: 0;
 }
-
+.search-bar form div .link-button i {
+  color: gray;
+}
 .link-button:hover,
 .link-button:focus {
   text-decoration: none;
+}
+
+.btn.yellow {
+  margin-right: 10px;
 }
 
 .nav-wrapper {

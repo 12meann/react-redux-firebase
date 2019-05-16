@@ -70,17 +70,14 @@ class RecipeDetails extends Component {
               {auth.uid === recipe.authorId ? (
                 <div>
                   <Link to={"/recipe/" + recipeId + "/edit"} className="btn yellow">Edit Recipe</Link>
-
                   <button onClick={() => deleteRecipe(recipeId)} className="btn red">Delete Recipe</button>
                 </div>
               ) : (null)}
-
             </div>
-
           </div>
         ) : (
             <div className="container flow-text center">
-              <p className="flow-text">Still load... Please wait</p>
+              <p className="flow-text">Still loading... Please wait</p>
             </div >
           )
         }
@@ -101,10 +98,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => {
-
   return {
     deleteRecipe: (recipeid) => { dispatch(deleteRecipe(recipeid)) },
-
   }
 }
 

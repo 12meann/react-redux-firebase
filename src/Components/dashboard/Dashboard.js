@@ -7,26 +7,17 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from "react-redux-firebase"
 import { Redirect } from "react-router-dom"
 
-
-
 class Dashboard extends Component {
   state = {
-    filteredRecipes: "",
-    filteredIngredients: ""
+    filteredRecipes: ""
   }
 
   handleChange = (e) => {
     this.setState({
       filteredRecipes: e.target.value
     })
-    console.log(this.state)
   }
 
-  handleChange2 = (e) => {
-    this.setState({
-      filteredIngredients: e.target.value
-    })
-  }
   render() {
     const { recipes, auth } = this.props
 
@@ -39,9 +30,7 @@ class Dashboard extends Component {
           <RecipeList recipes={recipes} filteredRecipes={this.state.filteredRecipes} />
         </div>
         <div className="col s12 m3 offset-m1">
-          <SearchBar handleChange={this.handleChange}
-            filteredIngredients={this.state.filteredIngredients}
-            filteredRecipes={this.state.filteredRecipes} />
+          <SearchBar handleChange={this.handleChange} />
           <FeaturedRecipe recipes={recipes} />
         </div>
       </div>
@@ -59,6 +48,6 @@ const mapStateToProps = state => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: "recipes", orderBy: ["createdAt", "desc"], limit: 10 }
+    { collection: "recipes", orderBy: ["createdAt", "desc"] }
   ])
 )(Dashboard);
